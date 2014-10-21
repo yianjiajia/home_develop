@@ -4,14 +4,14 @@ import os,sys,re,threading
 import datetime , subprocess , shlex
 class AutoDeploy(object):
     '''自动部署银监会测试环境'''
-    def __init__(self,zidian,BASE_DIR,DIRLIST,LOCK1,LOCK2):
-        self.zidian = {"192.168.0.30":"/home/apache-tomcat-7.0.55",\
+    def __init__(self,zidian,basedir,dirlist,lock1,lock2):
+        zidian = {"192.168.0.30":"/home/apache-tomcat-7.0.55",\
 				    "192.168.0.35":"/root/apache-tomcat-7.0.55",\
-				    "192.168.0.39":"/root/apache-tomcat-7.0.55"}
-        self.BASE_DIR = sys.path.abspath(sys.path.dirname(__file__))
-        self.DIRLIST = sys.path.listdir(BASE_DIR)
-        self.LOCK1 = threading.Lock()
-        self.LOCK2 = threading.Lock()
+				    "192.168.0.39":"/root/apache-tomIcat-7.0.55"}
+        self.BASE_DIR = basedir
+        self.DIRLIST = dirlist
+        self.LOCK1 = lock1
+        self.LOCK2 = lock2
     def copyToServer(self):
 
         print("执行远程拷贝")
@@ -46,7 +46,7 @@ class AutoDeploy(object):
 #   def manageService(self):
 
 
-if "__name__" == "__main__":
+if  __name__ == "__main__":
     serv = AutoDeploy()
     t = threading.Thread( target = serv.copyToServer, name = 'copy file to remote server' )
     t.start()
