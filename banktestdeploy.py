@@ -1,9 +1,6 @@
 #-*- coding: utf-8 -*-
-__author__ = 'Administrator'
 #!/usr/bin/env python
-
 import os,sys,re,threading
-
 import datetime , subprocess , shlex
 class AutoDeploy(object):
     '''自动部署银监会测试环境'''
@@ -46,7 +43,7 @@ class AutoDeploy(object):
                 finally:
                     self.LOCK2.release()
 
-    def manageService(self):
+#   def manageService(self):
 
 
 if "__name__" == "__main__":
