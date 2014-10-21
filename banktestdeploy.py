@@ -5,9 +5,10 @@ import datetime , subprocess , shlex
 class AutoDeploy(object):
     '''自动部署银监会测试环境'''
     def __init__(self,zidian,basedir,dirlist,lock1,lock2):
-        zidian = {"192.168.0.30":"/home/apache-tomcat-7.0.55",\
-				    "192.168.0.35":"/root/apache-tomcat-7.0.55",\
-				    "192.168.0.39":"/root/apache-tomIcat-7.0.55"}
+        zidian = {"192.168.0.30":"/home/apache-tomcat-7.0.55",
+		  "192.168.0.35":"/root/apache-tomcat-7.0.55",
+		  "192.168.0.39":"/root/apache-tomIcat-7.0.55"
+		 }
         self.BASE_DIR = basedir
         self.DIRLIST = dirlist
         self.LOCK1 = lock1
