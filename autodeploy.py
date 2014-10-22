@@ -73,11 +73,9 @@ if __name__ == '__main__':
        		sys.exit()
 	ope = sys.argv[1]
 	if ope == 'copytoserver':
-		a = []
 		a = raw_input("依次输入拷贝文件、server的IP，保存目录，名称以空格分隔:\n").split()
 		copytosever(a)
 	elif ope == 'changeDB':
-		b = []
 		b =  raw_input("请按sql脚本的执行顺序依次输入，文件以空格分隔:\n").split()
 		changeDB(b)
 	elif ope == 'manger_tomcat':
