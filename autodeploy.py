@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
-
-
 import sys, os
 import subprocess
 import re
@@ -40,8 +38,8 @@ def manger_tomcat():
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
-    	print '请输入运行参数'
-    	sys.exit()
+    		print '请输入运行参数'
+    		sys.exit()
 
 	if sys.argv[1].startswith('--'):
    		option = sys.argv[1][2:]
