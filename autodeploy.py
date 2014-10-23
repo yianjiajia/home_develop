@@ -11,42 +11,41 @@ DICT= {'192.168.0.30':'/home/apache-tomcat-7.0.55',
                   '192.168.0.35':'/root/apache-tomcat-7.0.55',
                   '192.168.0.39':'/root/apache-tomIcat-7.0.55'
       }
-#执行远程拷贝
+#copytoserver执行远程拷贝
 
 def copytosever():   #形式参数file为需要传递的文件；形式参数server为远端服务器IP；形式参数dir为tomcat服务器的目录
-	print '#*20\n'
 	line = raw_input("依次输入拷贝文件、server的IP，保存目录，名称以空格分隔:\n").split()
-	command_line = ['ssh',line[0],'root@'+line[1]+':'+line[2]]
-	args = shlex.split(command_line)
+	command_line = ['scp',line[0],'root@'+line[1]+':'+line[2]]
 	try:
-		P = subprocess.Popen(args)
-		p.wait()
+		P = subprocess.Popen(command_line)
+		P.wait()
 	except IOError, e:
 		print e
+
+#changeDB执行sql脚本
 def changeDB():
 	print '#*20\n'
-	sql =  raw_input("请按sql脚本的执行顺序依次输入，文件以空格分隔:\n").split()
-	cmd = ['mysql -uroot -p111111 < sqlfile' for sqlfile in args] 
-	args = shlex.split(cmd)
+	sql =  raw_input("请输入你要执行的sql脚本名称:\n").split()
+	cmd = ['ssh','root@'+DICT[line[1]],'mysql -uroot -p111111 <',sql[0]] 
 	try:
-		for x in cmd:
-			P = subprocess.Popen(args)
-			p.wait()
+		P = subprocess.Popen(cmd)
+		P.wait()
+			
 	except IOError, e:
 		print e
+#管理远端tomcat服务器
 def manger_tomcat():
-	opt = raw_input("请输入远端服务器ip及脚本名,以空格分开\n").split()
-	command_line = ['ssh','root@'+line[0],DICT[line[0]]+'/'+line[1]]
-	args = shlex.split(command_line)
+	line = raw_input("请输入tomcat服务器IP地址,\n").split()
+	command_line = ['ssh','root@'+line[0],DICT[line[0]]+'/bin/'+sys.argv[2]]
 	try:
-		P = subprocess.Popen(args)
-		p.wait()
+		P = subprocess.Popen(command_line)
+		P.wait()
 	except IOError, e:
 		print e
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
-    		print '请输入运行参数'
+    		print '请输入运行参数,你可以执行python %s --help查看用法'%filename
     		sys.exit()
 
 	if sys.argv[1].startswith('--'):
@@ -69,7 +68,7 @@ if __name__ == '__main__':
 			* python %s changeDB 
 			*
 			*tomcat服务管理
-			* python %s manger_tomcat start|stop|restart  
+			* python %s manger_tomcat startup.sh|shutdown.sh
 			*
 			**********************************************
 			'''%(filename,filename,filename)
@@ -85,7 +84,7 @@ if __name__ == '__main__':
 	elif ope == 'manger_tomcat':
 		manger_tomcat()
 	else:
-		print 'Unknown option.'
+		print '你可以执行python %s --help查看用法'%filename
 
 		
 
