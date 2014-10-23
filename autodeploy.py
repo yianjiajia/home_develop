@@ -9,8 +9,8 @@ import shlex
 filename=sys.argv[0]
 DICT= {'192.168.0.30':'/home/apache-tomcat-7.0.55',
                   '192.168.0.35':'/root/apache-tomcat-7.0.55',
-                  '192.168.0.39":"/root/apache-tomIcat-7.0.55'
-                 }
+                  '192.168.0.39':'/root/apache-tomIcat-7.0.55'
+      }
 #执行远程拷贝
 
 def copytosever():   #形式参数file为需要传递的文件；形式参数server为远端服务器IP；形式参数dir为tomcat服务器的目录
