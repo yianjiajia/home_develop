@@ -23,7 +23,7 @@ def copytosever():   #形式参数file为需要传递的文件；形式参数ser
 		p.wait()
 	except IOError, e:
 		print e
-def changeDB(*args):
+def changeDB():
 	print '#*20\n'
 	sql =  raw_input("请按sql脚本的执行顺序依次输入，文件以空格分隔:\n").split()
 	cmd = ['mysql -uroot -p111111 < sqlfile' for sqlfile in args] 
